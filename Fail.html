@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Αποτυχία</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #dc3545; /* Κόκκινο φόντο */
+            margin: 0;
+        }
+        #message {
+            font-size: 48px;
+            color: #fff;
+            background-color: #000;
+            padding: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Κεντραρισμένο κείμενο */
+        }
+    </style>
+</head>
+<body>
+
+<div id="message">
+    Λυπάμαι αλλά δεν περάσατε...<br>
+    ελάτε πάλι του χρόνου.
+</div>
+
+<!-- Προσθήκη ήχου αποτυχίας -->
+<audio id="fail-sound" src="fail-sound.mp3"></audio>
+
+<script>
+    // Αναπαραγωγή ήχου αποτυχίας μόλις φορτώσει η σελίδα
+    window.onload = function() {
+        var audio = document.getElementById("fail-sound");
+
+        // Προσπαθούμε να παίξουμε τον ήχο αμέσως μόλις φορτωθεί η σελίδα
+        var playPromise = audio.play();
+
+        // Εάν το browser μπλοκάρει τον ήχο, μπορούμε να χειριστούμε την απόρριψη του promise
+        if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+                console.log("Ο ήχος δεν παίχτηκε αυτόματα λόγω περιορισμών του browser:", error);
+            });
+        }
+    };
+</script>
+
+</body>
+</html>
