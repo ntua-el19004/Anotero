@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Αριθμός Θέσης</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #28a745; /* Πράσινο φόντο */
+            margin: 0;
+        }
+        #position-number {
+            font-size: 48px;
+            color: #fff;
+            background-color: #000;
+            padding: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Κεντραρισμένο κείμενο */
+        }
+    </style>
+</head>
+<body>
+
+<div id="position-number">
+    Συγχαρητήρια! Περάσατε στο Ανώτερο!<br>
+    Η θέση σας είναι: <span id="seat-number"></span>
+</div>
+
+<!-- Προσθήκη ήχου -->
+<audio id="success-sound" src="success-sound.mp3"></audio>
+
+<script>
+    // Δημιουργούμε έναν τυχαίο αριθμό θέσης από 1 έως 100
+    function getRandomSeatNumber() {
+        return 2;
+    }
+
+    // Αναπαραγωγή ήχου επιτυχίας μόλις φορτώσει η σελίδα
+    window.onload = function() {
+        document.getElementById("seat-number").textContent = getRandomSeatNumber();
+
+        var audio = document.getElementById("success-sound");
+
+        // Προσπαθούμε να παίξουμε τον ήχο αμέσως μόλις φορτωθεί η σελίδα
+        var playPromise = audio.play();
+
+        // Εάν το browser μπλοκάρει τον ήχο, μπορούμε να χειριστούμε την απόρριψη του promise
+        if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+                console.log("Ο ήχος δεν παίχτηκε αυτόματα λόγω περιορισμών του browser:", error);
+            });
+        }
+    };
+</script>
+
+</body>
+</html>
